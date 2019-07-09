@@ -7,6 +7,7 @@
 // @author       Iuga Stefan
 // @match        https://mangadex.org/title/*
 // @grant        none
+// @license      BSD 3-Clause "New" or "Revised" License
 // ==/UserScript==
 
 (function() {
