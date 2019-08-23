@@ -2,7 +2,7 @@
 // @name         toggle
 // @namespace    https://github.com/iugastefan
 // @homepage     https://github.com/iugastefan/readtoggle/raw/master/toggle.user.js
-// @version      0.3
+// @version      0.4
 // @description  Toggles chapter's read state
 // @author       Iuga Stefan
 // @match        https://mangadex.org/title/*
@@ -18,6 +18,10 @@
     sp.className = "fas fa-eye fa-fw";
     but.appendChild(sp);
     var t = document.createTextNode(" Toggle read status for all chapters");
+    if(document.getElementsByClassName("chapter_mark_read_button").length === 0 && document.getElementsByClassName("chapter_mark_unread_button").length === 0) {
+        t.textContent=" You need to follow to read";
+        but.disabled=true;
+    }
     but.appendChild(t);
     but.style.cursor = "pointer";
     but.onclick = function() {
