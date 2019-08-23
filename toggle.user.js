@@ -2,7 +2,7 @@
 // @name         toggle
 // @namespace    https://github.com/iugastefan
 // @homepage     https://github.com/iugastefan/readtoggle/raw/master/toggle.user.js
-// @version      0.2
+// @version      0.3
 // @description  Toggles chapter's read state
 // @author       Iuga Stefan
 // @match        https://mangadex.org/title/*
@@ -12,11 +12,12 @@
 
 (function() {
     'use strict';
-    var but = document.createElement("div");
+    var but = document.createElement("button");
+    but.className="btn btn-primary";
     var sp = document.createElement("span");
     sp.className = "fas fa-eye fa-fw";
     but.appendChild(sp);
-    var t = document.createTextNode(" Mark all chapters read/unread");
+    var t = document.createTextNode(" Toggle read status for all chapters");
     but.appendChild(t);
     but.style.cursor = "pointer";
     but.onclick = function() {
@@ -25,17 +26,20 @@
             Array.from(x).forEach(function(item) {
                 item.click();
             });
+            but.disabled=true;
+            t.textContent = " Refresh to toggle again";
         } else {
             x = document.getElementsByClassName("chapter_mark_unread_button");
             if (x.length !== 0) {
                 Array.from(x).forEach(function(item) {
                     item.click();
+                    but.disabled=true;
+                    t.textContent = " Refresh to toggle again";
                 });
             } else {
-                console.log("nothing to click");
+                console.log("Nothing to click");
             }
         }
     };
-
-    document.getElementById("navbarSupportedContent").appendChild(but);
+    document.getElementsByClassName("col-lg-9 col-xl-10")[document.getElementsByClassName("col-lg-9 col-xl-10").length-1].appendChild(but);
 })();
